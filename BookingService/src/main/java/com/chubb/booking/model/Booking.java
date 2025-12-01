@@ -11,6 +11,7 @@ import com.chubb.booking.enums.TripType;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,6 +43,7 @@ public class Booking {
      * Embedded passengers. Validate each passenger using @Valid; service layer will enforce
      * additional rules like max passengers if required.
      */
+    @Size(max = 9, message = "A maximum of 9 passengers are allowed in one booking")
     @NotEmpty(message = "At least one passenger is required")
     private List<@Valid Passenger> passengers;
 
