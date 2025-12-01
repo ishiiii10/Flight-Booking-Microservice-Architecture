@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import com.chubb.booking.dto.BookingRequest;
 import com.chubb.booking.dto.BookingResponse;
 import com.chubb.booking.dto.TicketDetailsResponse;
+import com.chubb.booking.model.Booking;
 import com.chubb.booking.service.BookingService;
 
 import jakarta.validation.Valid;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -40,5 +42,11 @@ public class BookingController {
     public Mono<ResponseEntity<Void>> cancelBooking(@PathVariable String pnr) {
         return bookingService.cancelBooking(pnr)
                 .thenReturn(ResponseEntity.ok().<Void>build());
+    }
+    
+    @GetMapping("/api/bookings")
+    public Mono<ResponseEntity<Flux<Booking>>> getAllBookings() {
+        Flux<Booking> all = bookingService.listAllBookings();
+        return Mono.just(ResponseEntity.ok().body(all));
     }
 }
