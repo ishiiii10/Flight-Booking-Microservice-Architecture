@@ -1,0 +1,5 @@
+package com.chubb.flight.exception;
+
+public class GlobalExceptionHandler {
+
+}

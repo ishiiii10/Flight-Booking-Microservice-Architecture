@@ -3,10 +3,12 @@ package com.chubb.flight.dto;
 
 import java.time.LocalDateTime;
 
+
 import com.chubb.flight.enums.Airline;
 import com.chubb.flight.enums.City;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -51,4 +53,16 @@ public class FlightRequest {
 
     @PositiveOrZero(message = "Price must be zero or positive")
     private double price;
+
+    /**
+     * Bean-level validation: source and destination must be different.
+     * This will be evaluated during @Valid processing and produce a WebExchangeBindException
+     * which your GlobalExceptionHandler converts into a 400 with details.
+     */
+    @AssertTrue(message = "Source and destination cannot be the same")
+    public boolean isSourceAndDestinationDifferent() {
+        // If either is null, let the @NotNull validation handle it separately.
+        if (source == null || destination == null) return true;
+        return !source.equals(destination);
+    }
 }
