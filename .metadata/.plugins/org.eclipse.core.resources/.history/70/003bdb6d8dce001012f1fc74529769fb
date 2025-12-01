@@ -1,0 +1,5 @@
+package com.chubb.flight.enums;
+
+public enum Cities {
+
+}

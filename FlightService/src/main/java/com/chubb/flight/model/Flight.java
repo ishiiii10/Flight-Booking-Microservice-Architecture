@@ -2,6 +2,8 @@ package com.chubb.flight.model;
 
 
 
+import com.chubb.flight.enums.Airline;
+import com.chubb.flight.enums.City;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Min;
@@ -31,10 +33,10 @@ public class Flight {
     private String flightNumber;
 
     @NotBlank(message = "Source is required")
-    private String source;
+    public City source;
 
     @NotBlank(message = "Destination is required")
-    private String destination;
+    public City destination;
 
     /**
      * Expect ISO-8601 string from client, e.g. "2025-12-10T10:30:00"

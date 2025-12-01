@@ -1,0 +1,5 @@
+package com.chubb.flight.dto;
+
+public class FlightResponse {
+
+}

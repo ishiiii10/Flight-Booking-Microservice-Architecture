@@ -1,0 +1,5 @@
+package com.chubb.flight.service;
+
+public class FlightServiceImpl {
+
+}
