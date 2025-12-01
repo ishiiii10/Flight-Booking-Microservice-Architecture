@@ -1,0 +1,5 @@
+package com.chubb.flight.repository;
+
+public class FlightRepository {
+
+}
